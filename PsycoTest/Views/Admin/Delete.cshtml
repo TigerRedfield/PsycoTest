@@ -1,0 +1,57 @@
+﻿@model PsycoTest.DBModel.User
+
+@{
+    ViewBag.Title = "Удаление пользователей";
+}
+
+@Html.ActionLink("Назад к списку пользователей", "Users", null, new { @class = "nav-link", @style = "font-family: Times New Roman; font-size: 16pt; color: #42aaff" })
+
+<h3 style="font-family: 'Times New Roman'; margin-top: 10px">Вы точно хотите удалить этого пользователя?</h3>
+<div style="font-family: 'Times New Roman'">
+    <h4 style="margin-top: 10px;">
+        @Html.DisplayFor(model => model.UserLastName) @Html.DisplayFor(model => model.UserFirstName) @Html.DisplayFor(model => model.UserPatronymic)
+    </h4>
+    <hr />
+    <div style="margin-top: 25px">
+        <table style="text-align: center; display:flex; justify-content: center">
+            <tr style="font-size: 24pt">
+
+                <th> @Html.DisplayName("Логин")</th>
+                <th style="padding: 20px"> @Html.DisplayName("Пароль")</th>
+                <th style="padding: 20px"> @Html.DisplayName("Дата рождения")</th>
+                <th style="padding: 20px"> @Html.DisplayName("Группа")</th>
+            </tr>
+
+            <tr style="font-size: 20pt">
+
+
+                <td>
+                    @Html.DisplayFor(model => model.UserLogin)
+                </td>
+
+                <td style="padding: 5px">
+                    @Html.DisplayFor(model => model.UserPassword)
+                </td>
+
+                <td style="padding: 5px">
+                    @Convert.ToDateTime(Model.UserDateBirth).ToString("dd/MM/yyyy")
+                </td>
+
+
+                <td style="padding: 5px">
+                    @Html.DisplayFor(model => model.Group.GroupNumber)
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="display: flex; justify-content: center; margin-top: 16px">
+            <input type="submit" value="Удалить" style="font-size: 20pt; width: 200px" />
+        </div>
+    }
+</div>

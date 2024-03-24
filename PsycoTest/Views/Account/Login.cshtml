@@ -1,0 +1,63 @@
+﻿@model PsycoTest.Models.UserLogin
+
+
+@{
+    ViewBag.Title = "Вход пользователя";
+}
+
+<fieldset style="font-family: 'Times New Roman';">
+    <legend style="font-size: 28pt;">
+        Вход пользователя
+    </legend>
+    <hr style="margin-bottom: 50px" />
+
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        <a>
+            @Html.ValidationMessage("Ошибка", null, new { @class = "text text-danger" })
+        </a>
+        <div class="divAccount" style="margin-bottom: 50px">
+            <div class="divtb">
+                @Html.LabelFor(m => m.Login)
+                <a>
+                    @Html.TextBoxFor(m => m.Login)
+                </a>
+                <a>
+                    @Html.ValidationMessageFor(m => m.Login, null, new { @class = "text text-danger" })
+                </a>
+            </div>
+
+            <div class="divtb" style="margin-left: 20px">
+                <a>
+                    @Html.LabelFor(m => m.Password)
+                </a>
+
+                <a>
+                    @Html.TextBoxFor(m => m.Password, null, new { @type = "password", @id = "typepass" })
+                    @Html.CheckBox("Показать пароль", new { @onclick = "Toggle()", @id = "showpass" }) Показать пароль
+                </a>
+                <a>
+                    @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text text-danger" })
+                </a>
+            </div>
+        </div>
+
+        <div class="divbuttonAccount" style="margin-bottom: 50px;">
+            <input type="submit" value="Войти" class="buttonaccount" style="width: 500px;" />
+        </div>
+    }
+</fieldset>
+
+<script>
+    // Change the type of input to password or text
+    function Toggle() {
+        let temp = document.getElementById("typepass");
+        let temp2 = document.getElementById("showpass");
+        if (temp2.checked == false) {
+            temp.type = "password";
+        }
+        else if (temp2.checked == true) {
+            temp.type = "text";
+        }
+    }
+</script>

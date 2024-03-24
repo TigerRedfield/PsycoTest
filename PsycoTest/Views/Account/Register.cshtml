@@ -1,0 +1,137 @@
+﻿@model PsycoTest.Models.User
+@{
+    ViewBag.Title = "Регистрация";
+}
+
+<fieldset style="font-family: 'Times New Roman';">
+    <legend style="font-size: 28pt;">
+        Регистрация пользователя
+    </legend>
+    <hr style="margin-bottom: 50px"/>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+    {
+        <a>
+            @Html.ValidationMessage("Ошибка", null, new { @class = "text text-danger" })
+        </a>
+        <div class="divAccount" style="margin-bottom: 50px">
+            <div class="divtb">
+                @Html.LabelFor(m => m.UserLogin)
+                <a>
+                    @Html.TextBoxFor(m => m.UserLogin)
+                </a>
+                <a>
+                    @Html.ValidationMessageFor(m => m.UserLogin, null, new { @class = "text text-danger" })
+                </a>
+            </div>
+
+            <div class="divtb" style="margin-left: 20px">
+                <a>
+                    @Html.LabelFor(m => m.UserPassword)
+                </a>
+
+                <a>
+                    @Html.TextBoxFor(m => m.UserPassword, null, new { @type = "password", @id = "typepass" })
+                    @Html.CheckBox("Показать пароль", new { @onclick = "Toggle()", @id = "showpass" }) Показать пароль
+                </a>
+
+                <a>
+                    @Html.ValidationMessageFor(m => m.UserPassword, null, new { @class = "text text-danger" })
+                </a>
+            </div>
+
+        </div>
+
+        <p></p>
+
+        <div class="divAccount" style="margin-bottom: 50px">
+            <div class="divtb">
+
+                @Html.LabelFor(m => m.UserFirstName)
+
+                <a>
+                    @Html.TextBoxFor(m => m.UserFirstName)
+                </a>
+
+                <a>
+                    @Html.ValidationMessageFor(m => m.UserFirstName, null, new { @class = "text text-danger" })
+                </a>
+            </div>
+
+            <div class="divtb" style="margin-left: 20px">
+
+                <a>
+                    @Html.LabelFor(m => m.UserLastName)
+                </a>
+                <a>
+                    @Html.TextBoxFor(m => m.UserLastName)
+                </a>
+                <a>
+                    @Html.ValidationMessageFor(m => m.UserLastName, null, new { @class = "text text-danger" })
+                </a>
+            </div>
+
+            <div class="divtb" style="margin-left: 20px">
+                <a>
+                    @Html.LabelFor(m => m.UserPatronymic)
+                </a>
+
+                <a>
+                    @Html.TextBoxFor(m => m.UserPatronymic)
+                </a>
+                <a>
+                    @Html.ValidationMessageFor(m => m.UserPatronymic, null, new { @class = "text text-danger" })
+                </a>
+            </div>
+        </div>
+
+        <p></p>
+        <div class="divAccount" style="margin-bottom: 50px">
+            <div class="divtb" style="margin-left: 20px">
+
+                <a>
+                    @Html.Label("Укажите свою дату рождения")
+                </a>
+                @Html.TextBoxFor(m => m.UserDateBirth, null, new { @type = "date", @value = Model.UserDateBirth.ToString("yyyy-MM-dd") })
+                <a>
+                    @Html.ValidationMessageFor(m => m.UserDateBirth, null, new { @class = "text text-danger" })
+                </a>
+            </div>
+
+            <div class="divtb" style="margin-left: 20px">
+                <a>
+                    @Html.LabelFor(m => m.UserGroupId)
+                </a>
+
+                <a style="margin-left: 60px;">
+
+                    @Html.DropDownListFor(m => m.UserGroupId, new SelectList(ViewBag.GroupId as System.Collections.IEnumerable, "GroupId", "GroupNumber"))
+
+                </a>
+                <a>
+                    @Html.ValidationMessageFor(m => m.UserGroupId, null, new { @class = "text text-danger" })
+                </a>
+            </div>
+
+        </div>
+
+        <div class="divbuttonAccount" style="margin-bottom: 50px;">
+            <input type="submit" value="Зарегистрироваться" class="buttonaccount" style="width: 500px;" />
+        </div>
+
+    }
+</fieldset>
+
+<script>
+    // Change the type of input to password or text
+    function Toggle() {
+        let temp = document.getElementById("typepass");
+        let temp2 = document.getElementById("showpass");
+        if (temp2.checked == false) {
+            temp.type = "password";
+        }
+        else if (temp2.checked == true) {
+            temp.type = "text";
+        }
+    }
+</script>
+

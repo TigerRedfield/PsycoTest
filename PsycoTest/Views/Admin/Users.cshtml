@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PsycoTest.DBModel.User>
+
+@{
+    ViewBag.Title = "Пользователи";
+}
+
+
+<fieldset style="font-family: 'Times New Roman';">
+    <legend style="font-size: 28pt;">
+        Пользователи
+    </legend>
+    <hr/>
+    <div style="margin-top: 25px">
+        <table style="text-align: center">
+            <tr style="font-size: 24pt">
+                <th>Фамилия</th>
+                <th style="padding: 20px;">Имя</th>
+                <th style="padding: 20px">Отчество</th>
+                <th style="padding: 20px">Логин</th>
+                <th style="padding: 20px">Пароль</th>
+                <th style="padding: 20px">Группа</th>
+                <th style="padding: 20px">Дата<br>рождения</th>
+            </tr>
+            @foreach (var u in Model)
+            {
+                <tr style="font-size: 20pt">
+
+                    <td>@u.UserLastName</td>
+                    <td style="padding: 20px">@u.UserFirstName</td>
+                    <td style="padding: 20px">@u.UserPatronymic</td>
+                    <td style="padding: 20px">@u.UserLogin</td>
+                    <td style="padding: 20px">@u.UserPassword</td>
+                    <td style="padding: 20px">@u.Group.GroupNumber</td>
+                    <td style="padding: 20px">@Convert.ToDateTime(u.UserDateBirth).ToString("dd.MM.yyyy")</td>
+                    <td style="padding: 5px">
+                        @Html.ActionLink("Изменить", "Edit", new { id = u.UserId }, new { @class = "nav-link", @style = "width: 120px; border: 2px blue solid; background-color: #e9e9ed; border-radius: 4px" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Удалить", "Delete", new { id = u.UserId }, new { @class = "nav-link", @style = "width: 120px; border: 2px blue solid; background-color: #e9e9ed; border-radius: 4px" })
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+</fieldset>
+
