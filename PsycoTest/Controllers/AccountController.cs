@@ -13,14 +13,14 @@ namespace PsycoTest.Controllers
     public class AccountController : Controller
     {
      
-        DBModel.DBPsycoTest DBPsyco = new DBModel.DBPsycoTest();
+        DBModel.ModelDBPsycoTest DbPsyco = new DBModel.ModelDBPsycoTest();
 
 
         [HttpGet]
         public ActionResult Register()
         {
             Models.User newUser = new Models.User();
-            ViewBag.GroupId = DBPsyco.Group.ToList();
+            ViewBag.GroupId = DbPsyco.Group.ToList();
 
             return View(newUser);
 
@@ -29,7 +29,7 @@ namespace PsycoTest.Controllers
         [HttpPost]
         public ActionResult Register(Models.User user)
         {
-            ViewBag.GroupId = DBPsyco.Group.ToList();
+            ViewBag.GroupId = DbPsyco.Group.ToList();
 
             if (ModelState.IsValid)
             {
@@ -40,13 +40,13 @@ namespace PsycoTest.Controllers
                 }
                 else
                 {
-                    if (!DBPsyco.User.Any(m => m.UserLogin == user.UserLogin))
+                    if (!DbPsyco.User.Any(m => m.UserLogin == user.UserLogin))
                     {
                         var age = DateTime.Now.Year - user.UserDateBirth.Year;
 
                         if (age < 16)
                         {
-                            ModelState.AddModelError("Ошибка", "Дата рождения пользователя должна быть больше 16 лет!");
+                            ModelState.AddModelError("Ошибка", "Возраст пользователя должен быть больше или равен 16 лет!");
                             return View(user);
                         }
                         else
@@ -59,8 +59,8 @@ namespace PsycoTest.Controllers
                             newUser.UserPatronymic = user.UserPatronymic;
                             newUser.UserDateBirth = user.UserDateBirth;
                             newUser.UserGroupId = user.UserGroupId;
-                            DBPsyco.User.Add(newUser);
-                            DBPsyco.SaveChanges();
+                            DbPsyco.User.Add(newUser);
+                            DbPsyco.SaveChanges();
                             return RedirectToRoute(new { controller = "Account", action = "Login" });
                         }
                     }
@@ -89,7 +89,7 @@ namespace PsycoTest.Controllers
         {
             if(ModelState.IsValid)
             {
-                if (DBPsyco.User.Where(m => m.UserLogin == userSet.Login && m.UserPassword == userSet.Password).FirstOrDefault() == null)
+                if (DbPsyco.User.Where(m => m.UserLogin == userSet.Login && m.UserPassword == userSet.Password).FirstOrDefault() == null)
                 {
                     if (userSet.Login == "Admin" && userSet.Password == "Admin123")
                     {
@@ -107,10 +107,11 @@ namespace PsycoTest.Controllers
                 }
                 else
                 {
+                    Session["UserId"] = DbPsyco.User.Single(x => x.UserLogin == userSet.Login).UserId;
                     Session["UserLogin"] = userSet.Login;
-                    Session["UserFirstName"] = DBPsyco.User.Where(u => u.UserLogin == userSet.Login).Select(u => u.UserFirstName).FirstOrDefault();
-                    Session["UserLastName"] = DBPsyco.User.Where(u => u.UserLogin == userSet.Login).Select(u => u.UserLastName).FirstOrDefault();
-                    Session["UserPatronymic"] = DBPsyco.User.Where(u => u.UserLogin == userSet.Login).Select(u => u.UserPatronymic).FirstOrDefault();
+                    Session["UserFirstName"] = DbPsyco.User.Where(u => u.UserLogin == userSet.Login).Select(u => u.UserFirstName).FirstOrDefault();
+                    Session["UserLastName"] = DbPsyco.User.Where(u => u.UserLogin == userSet.Login).Select(u => u.UserLastName).FirstOrDefault();
+                    Session["UserPatronymic"] = DbPsyco.User.Where(u => u.UserLogin == userSet.Login).Select(u => u.UserPatronymic).FirstOrDefault();
                     return RedirectToRoute(new { controller = "Home", action = "Index" });
                 }
             }

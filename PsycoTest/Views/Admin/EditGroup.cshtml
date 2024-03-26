@@ -1,0 +1,50 @@
+﻿@model PsycoTest.DBModel.Group
+
+
+@{
+    ViewBag.Title = "Редактирование групп";
+}
+
+@Html.ActionLink("Назад к списку групп", "WorkGroups", null, new { @class = "nav-link", @style = "font-family: Times New Roman; font-size: 16pt; color: #42aaff" })
+
+<h3 style="font-family: 'Times New Roman'; margin-top: 10px">Редактирование группы</h3>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="font-family: 'Times New Roman'">
+        <h4 style="margin-top: 10px;">
+            @Html.DisplayFor(model => model.GroupNumber)
+        </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.GroupId)
+
+
+
+        <div class="divAccount" style="margin-bottom: 50px">
+            <div class="divtb">
+                @Html.Label("Группа")
+                <a>
+                    @Html.TextBoxFor(m => m.GroupNumber)
+                </a>
+                <a>
+                    @Html.ValidationMessageFor(m => m.GroupNumber, null, new { @class = "text text-danger" })
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <p></p>
+
+    <div class="form-group">
+        <div style="display: flex; justify-content: center; margin-top: 16px">
+            <input type="submit" value="Сохранить" style="font-size: 20pt; width: 200px" />
+        </div>
+    </div>
+
+}
+
+

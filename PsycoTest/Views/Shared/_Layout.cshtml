@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - PsycoTest </title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -13,16 +13,16 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-navbar border-bottom box-shadow mb-3">
             <img src="/Resources/feather.png" style="width: 80px; height: 50px" />
             <div class="container">
-                @Html.ActionLink("PsycoTest", "Index", "Home", null, new { @style = "color: blue; font-size: 32pt; font-family: 'Times New Roman'; font-weight:600; position: relative; left: -4px;" })
+                @Html.ActionLink("PsycoTest", "Index", "Home", null, new { @style = "color: blue; font-size: 32pt; font-family: Times New Roman; font-weight:600;", @class="nav-link" })
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Переключить навигацию" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between" style="display: flex; justify-content: center">
                     @Html.Partial("_PartialNavigation")
                 </div>
             </div>
-            <div>
+            <div style="display: flex; justify-content: center ">
                 @Html.Partial("_PartialLogin")
             </div>
         </nav>

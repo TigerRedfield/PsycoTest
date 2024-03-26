@@ -10,6 +10,8 @@ namespace PsycoTest.Models
     {
         public int GroupId { get; set; }
 
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Пожалуйста, укажите группу")]
+        [Display(Name = "Группа ")]
         public string GroupNumber { get; set; }
 
         public virtual ICollection<User> Users { get; set; } = new List<User>();

@@ -14,14 +14,21 @@ namespace PsycoTest.DBModel
     
     public partial class Result
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Result()
+        {
+            this.TakeAnswer = new HashSet<TakeAnswer>();
+        }
+    
         public int ResultId { get; set; }
         public int ResultTestId { get; set; }
         public int ResultUserId { get; set; }
-        public System.DateTime ResultDateStart { get; set; }
-        public System.DateTime ResultDateEnd { get; set; }
+        public Nullable<System.DateTime> ResultDateStart { get; set; }
+        public Nullable<System.DateTime> ResultDateEnd { get; set; }
     
         public virtual Test Test { get; set; }
         public virtual User User { get; set; }
-        public virtual Answer Answer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TakeAnswer> TakeAnswer { get; set; }
     }
 }

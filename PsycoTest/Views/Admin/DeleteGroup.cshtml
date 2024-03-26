@@ -1,0 +1,26 @@
+﻿@model PsycoTest.DBModel.Group
+
+@{
+    ViewBag.Title = "Удаление групп";
+}
+
+@Html.ActionLink("Назад к списку групп", "WorkGroups", null, new { @class = "nav-link", @style = "font-family: Times New Roman; font-size: 16pt; color: #42aaff" })
+
+<h3 style="font-family: 'Times New Roman'; margin-top: 10px">Вы точно хотите удалить эту группу?</h3>
+<div style="font-family: 'Times New Roman'">
+    <h4 style="margin-top: 10px;">
+        @Html.DisplayFor(model => model.GroupNumber)
+    </h4>
+    <hr />
+    </div>
+<div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="display: flex; justify-content: center; margin-top: 16px">
+            <input type="submit" value="Удалить" style="font-size: 20pt; width: 200px" />
+        </div>
+    }
+</div>

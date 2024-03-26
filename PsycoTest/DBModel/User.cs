@@ -27,7 +27,6 @@ namespace PsycoTest.DBModel
         public string UserFirstName { get; set; }
         public string UserLastName { get; set; }
         public string UserPatronymic { get; set; }
-
         public System.DateTime UserDateBirth { get; set; }
     
         public virtual Group Group { get; set; }

@@ -342,38 +342,47 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManagerTestsController.cs" />
+    <Compile Include="Controllers\TestsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DBModel\Answer.cs">
-      <DependentUpon>ModelDbPT.tt</DependentUpon>
+      <DependentUpon>DBModelPsyco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\DBModelPsyco.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModelPsyco.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\DBModelPsyco.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModelPsyco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\DBModelPsyco.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModelPsyco.edmx</DependentUpon>
     </Compile>
     <Compile Include="DBModel\Group.cs">
-      <DependentUpon>ModelDbPT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModel\ModelDbPT.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDbPT.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModel\ModelDbPT.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDbPT.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBModel\ModelDbPT.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelDbPT.edmx</DependentUpon>
+      <DependentUpon>DBModelPsyco.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModel\Question.cs">
-      <DependentUpon>ModelDbPT.tt</DependentUpon>
+      <DependentUpon>DBModelPsyco.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModel\Result.cs">
-      <DependentUpon>ModelDbPT.tt</DependentUpon>
+      <DependentUpon>DBModelPsyco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\ResultScore.cs">
+      <DependentUpon>DBModelPsyco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBModel\TakeAnswer.cs">
+      <DependentUpon>DBModelPsyco.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModel\Test.cs">
-      <DependentUpon>ModelDbPT.tt</DependentUpon>
+      <DependentUpon>DBModelPsyco.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModel\User.cs">
-      <DependentUpon>ModelDbPT.tt</DependentUpon>
+      <DependentUpon>DBModelPsyco.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -407,15 +416,15 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="DBModel\ModelDbPT.Context.tt">
+    <Content Include="DBModel\DBModelPsyco.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelDbPT.Context.cs</LastGenOutput>
-      <DependentUpon>ModelDbPT.edmx</DependentUpon>
+      <DependentUpon>DBModelPsyco.edmx</DependentUpon>
+      <LastGenOutput>DBModelPsyco.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DBModel\ModelDbPT.tt">
+    <Content Include="DBModel\DBModelPsyco.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelDbPT.edmx</DependentUpon>
-      <LastGenOutput>ModelDbPT.cs</LastGenOutput>
+      <DependentUpon>DBModelPsyco.edmx</DependentUpon>
+      <LastGenOutput>DBModelPsyco.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -427,12 +436,12 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="DBModel\ModelDbPT.edmx">
+    <EntityDeploy Include="DBModel\DBModelPsyco.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelDbPT.Designer.cs</LastGenOutput>
+      <LastGenOutput>DBModelPsyco.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="DBModel\ModelDbPT.edmx.diagram">
-      <DependentUpon>ModelDbPT.edmx</DependentUpon>
+    <Content Include="DBModel\DBModelPsyco.edmx.diagram">
+      <DependentUpon>DBModelPsyco.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -467,6 +476,14 @@
     <Content Include="Views\Admin\Users.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Admin\WorkGroups.cshtml" />
+    <Content Include="Views\Admin\DeleteGroup.cshtml" />
+    <Content Include="Views\Admin\EditGroup.cshtml" />
+    <Content Include="Views\Admin\CreateGroup.cshtml" />
+    <Content Include="Views\User\UserProfile.cshtml" />
+    <Content Include="Views\Tests\ListTest.cshtml" />
+    <Content Include="Views\ManagerTests\WorkTests.cshtml" />
+    <Content Include="Views\Tests\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

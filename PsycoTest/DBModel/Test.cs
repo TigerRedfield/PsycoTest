@@ -19,6 +19,7 @@ namespace PsycoTest.DBModel
         {
             this.Question = new HashSet<Question>();
             this.Result = new HashSet<Result>();
+            this.ResultScore = new HashSet<ResultScore>();
         }
     
         public int TestId { get; set; }
@@ -29,5 +30,7 @@ namespace PsycoTest.DBModel
         public virtual ICollection<Question> Question { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Result> Result { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ResultScore> ResultScore { get; set; }
     }
 }

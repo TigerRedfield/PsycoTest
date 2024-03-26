@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище DBPsycoTestModelContainer" CdmEntityContainer="ModelDBPsycoTest">
+    <EntitySetMapping Name="Answer">
+      <EntityTypeMapping TypeName="DBPsycoTestModel.Answer">
+        <MappingFragment StoreEntitySet="Answer">
+          <ScalarProperty Name="AnswerId" ColumnName="AnswerId" />
+          <ScalarProperty Name="AnswerQuestionId" ColumnName="AnswerQuestionId" />
+          <ScalarProperty Name="AnswerName" ColumnName="AnswerName" />
+          <ScalarProperty Name="AnswerScore" ColumnName="AnswerScore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Group">
+      <EntityTypeMapping TypeName="DBPsycoTestModel.Group">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="GroupNumber" ColumnName="GroupNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question">
+      <EntityTypeMapping TypeName="DBPsycoTestModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="QuestionTestId" ColumnName="QuestionTestId" />
+          <ScalarProperty Name="QuestionName" ColumnName="QuestionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Result">
+      <EntityTypeMapping TypeName="DBPsycoTestModel.Result">
+        <MappingFragment StoreEntitySet="Result">
+          <ScalarProperty Name="ResultId" ColumnName="ResultId" />
+          <ScalarProperty Name="ResultTestId" ColumnName="ResultTestId" />
+          <ScalarProperty Name="ResultUserId" ColumnName="ResultUserId" />
+          <ScalarProperty Name="ResultDateStart" ColumnName="ResultDateStart" />
+          <ScalarProperty Name="ResultDateEnd" ColumnName="ResultDateEnd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResultScore">
+      <EntityTypeMapping TypeName="DBPsycoTestModel.ResultScore">
+        <MappingFragment StoreEntitySet="ResultScore">
+          <ScalarProperty Name="ResultScoreId" ColumnName="ResultScoreId" />
+          <ScalarProperty Name="ResultScoreTestId" ColumnName="ResultScoreTestId" />
+          <ScalarProperty Name="ResultScoreName" ColumnName="ResultScoreName" />
+          <ScalarProperty Name="ResultScoreValue" ColumnName="ResultScoreValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TakeAnswer">
+      <EntityTypeMapping TypeName="DBPsycoTestModel.TakeAnswer">
+        <MappingFragment StoreEntitySet="TakeAnswer">
+          <ScalarProperty Name="TakeResultId" ColumnName="TakeResultId" />
+          <ScalarProperty Name="TakeAnswerId" ColumnName="TakeAnswerId" />
+          <ScalarProperty Name="TakeScore" ColumnName="TakeScore" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Test">
+      <EntityTypeMapping TypeName="DBPsycoTestModel.Test">
+        <MappingFragment StoreEntitySet="Test">
+          <ScalarProperty Name="TestId" ColumnName="TestId" />
+          <ScalarProperty Name="TestName" ColumnName="TestName" />
+          <ScalarProperty Name="TestDescription" ColumnName="TestDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="DBPsycoTestModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserFirstName" ColumnName="UserFirstName" />
+          <ScalarProperty Name="UserLastName" ColumnName="UserLastName" />
+          <ScalarProperty Name="UserPatronymic" ColumnName="UserPatronymic" />
+          <ScalarProperty Name="UserDateBirth" ColumnName="UserDateBirth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

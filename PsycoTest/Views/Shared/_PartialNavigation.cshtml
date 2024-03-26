@@ -1,34 +1,45 @@
 ﻿@if (Session["UserLogin"] == null)
 {
-    <ul class="navbar-nav flex-grow-1" style="font-size: 20px; text-align: center; ">
-        <li style="margin-left: 300px; width: 200px;">@Html.ActionLink("Главная страница", "Index", "Home", new { area = "" }, new { @style = "border-radius: 4px; background-color: #42aaff; color: white;", @class = "nav-link" })</li>
-        <li style="margin-left: 50px; width: 200px">@Html.ActionLink("Тесты", "About", "Home", new { area = "" }, new { @style = "border-radius: 4px; background-color: #42aaff; color: white;", @class = "nav-link" })</li>
+    <ul class="navbar-nav flex-grow-1" style="font-size: 20px; text-align: center;  display: flex; justify-content: center ">
+        <li style="width: 200px;" class="backnav">@Html.ActionLink("Главная страница", "Index", "Home", new { area = "" }, new { @style = "color: white;", @class = "nav-link", })</li>
+        <li style="margin-left: 50px; width: 200px" class="backnav">@Html.ActionLink("Тесты", "ListTest", "Tests", new { area = "" }, new { @style = "color: white;", @class = "nav-link" })</li>
     </ul>
 }
 else
 {
     if (Session["UserLogin"].ToString().Contains("Admin"))
     {
-        <ul class="navbar-nav flex-grow-1" style="font-size: 20px; text-align: center; position: relative; left: -40px; ">
-            <li class="link" style="margin-left: 110px;width: 200px;">@Html.ActionLink("Главная страница", "Index", "Home", new { area = "" }, new { @style = "border-radius: 4px; background-color: #42aaff; color: white;", @class = "nav-link" })</li>
-            <li style="margin-left: 50px; width: 200px">@Html.ActionLink("Тесты", "About", "Home", new { area = "" }, new { @style = "border-radius: 4px; background-color: #42aaff; color: white;", @class = "nav-link" })</li>
-            <li style="margin-left: 50px; width: 200px">@Html.ActionLink("Работа с тестами", "Contact", "Home", new { area = "" }, new { @style = "border-radius: 4px; background-color: #42aaff; color: white", @class = "nav-link" })</li>
-            <li style="margin-left: 50px; width: 200px">@Html.ActionLink("Пользователи", "Users", "Admin", new { area = "" }, new { @style = "border-radius: 4px; background-color: #42aaff; color: white", @class = "nav-link" })</li>
+        <ul class="navbar-nav flex-grow-1" style="font-size: 20px; text-align: center; position: relative; left: -40px; display: flex; justify-content: center ">
+            <li style="margin-left: 110px;width: 200px;" class="backnav">@Html.ActionLink("Главная страница", "Index", "Home", new { area = "" }, new { @style = "color: white;", @class = "nav-link" })</li>
+            <li style="margin-left: 50px; width: 200px" class="backnav">@Html.ActionLink("Тесты", "ListTest", "Tests", new { area = "" }, new { @style = "color: white;", @class = "nav-link" })</li>
+            <li style="margin-left: 50px; width: 200px" class="backnav">@Html.ActionLink("Работа с тестами", "WorkTests", "ManagerTests", new { area = "" }, new { @style = "color: white", @class = "nav-link" })</li>
+            <li style="margin-left: 50px; width: 200px" class="backnav">@Html.ActionLink("Пользователи", "Users", "Admin", new { area = "" }, new { @style = "color: white", @class = "nav-link" })</li>
         </ul>
     }
     else
     {
-        <ul class="navbar-nav flex-grow-1" style="font-size: 20px; text-align: center;">
-            <li style="margin-left: 160px; width: 200px;">
-                @Html.ActionLink("Главная страница", "Index", "Home", new { area = "" }, new { @style = "border-radius: 4px; background-color: #42aaff; color: white;", @class = "nav-link" })
+        <ul class="navbar-nav flex-grow-1" style="font-size: 20px; text-align: center;  display: flex; justify-content: center ">
+            <li style="width: 200px;" class="backnav">
+                @Html.ActionLink("Главная страница", "Index", "Home", new { area = "" }, new { @style = "color: white;", @class = "nav-link" })
             </li>
-            <li style="margin-left: 50px; width: 200px">@Html.ActionLink("Тесты", "About", "Home", new { area = "" }, new { @style = "border-radius: 4px; background-color: #42aaff; color: white;", @class = "nav-link" })</li>
-            <li style="margin-left: 50px; width: 200px"> @Html.ActionLink("Профиль", "About", "Home", new { area = "" }, new { @style = "border-radius: 4px; background-color: #42aaff; color: white;", @class = "nav-link" }) </li>
+            <li style="margin-left: 50px; width: 200px" class="backnav">@Html.ActionLink("Тесты", "ListTest", "Tests", new { area = "" }, new { @style = "color: white;", @class = "nav-link" })</li>
+            <li style="margin-left: 50px; width: 200px" class="backnav"> @Html.ActionLink("Профиль", "UserProfile", "User", new {id = Session["UserId"] }, new { @style = "color: white;", @class = "nav-link" }) </li>
         </ul>
 
     }
 }
 
 
+<style>
+        .backnav {
+            background-color: #42aaff;
+            border-radius: 4px;
+        }
+
+            .backnav:hover {
+                background-color: #24afb1;
+            }
+
+</style>
 
 

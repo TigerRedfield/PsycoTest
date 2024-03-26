@@ -20,6 +20,9 @@ textarea {
 }
 
 
+.nav-link.link {
+}
+
 .divAccount {
     display: flex;
     align-items: center;
@@ -55,10 +58,3 @@ textarea {
 
 }
 
-.sidebar_left_menu_nav {
-    background-color: #42aaff;
-}
-
-.sidebar_left_menu_nav li:hover {
-    background-color: red;
-}

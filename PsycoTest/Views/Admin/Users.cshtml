@@ -6,12 +6,14 @@
 
 
 <fieldset style="font-family: 'Times New Roman';">
-    <legend style="font-size: 28pt;">
+    <legend style="font-size: 28pt; display: flex; justify-content: space-between">
+
         Пользователи
+        @Html.ActionLink("Перейти к списку групп", "WorkGroups", null, new { @class = "nav-link", @style = "font-family: Times New Roman; font-size: 16pt; color: #42aaff" })
     </legend>
-    <hr/>
+    <hr />
     <div style="margin-top: 25px">
-        <table style="text-align: center">
+        <table style="text-align: center; display: flex; justify-content: center;">
             <tr style="font-size: 24pt">
                 <th>Фамилия</th>
                 <th style="padding: 20px;">Имя</th>
@@ -33,15 +35,29 @@
                     <td style="padding: 20px">@u.Group.GroupNumber</td>
                     <td style="padding: 20px">@Convert.ToDateTime(u.UserDateBirth).ToString("dd.MM.yyyy")</td>
                     <td style="padding: 5px">
-                        @Html.ActionLink("Изменить", "Edit", new { id = u.UserId }, new { @class = "nav-link", @style = "width: 120px; border: 2px blue solid; background-color: #e9e9ed; border-radius: 4px" })
+                        @Html.ActionLink("Изменить", "Edit", new { id = u.UserId }, new { @class = "nav-link buttonUG", @style = "width: 120px; border: 1px black solid;" })
                     </td>
                     <td>
-                        @Html.ActionLink("Удалить", "Delete", new { id = u.UserId }, new { @class = "nav-link", @style = "width: 120px; border: 2px blue solid; background-color: #e9e9ed; border-radius: 4px" })
+                        @Html.ActionLink("Удалить", "Delete", new { id = u.UserId }, new { @class = "nav-link buttonUG", @style = "width: 120px; border: 1px black solid;" })
                     </td>
                 </tr>
             }
+
         </table>
 
     </div>
 </fieldset>
+
+<style>
+
+    .buttonUG {
+        background-color: #e9e9ed;
+        border-radius: 4px;
+    }
+
+        .buttonUG:hover {
+            background-color: #d0d0d7;
+        }
+</style>
+
 

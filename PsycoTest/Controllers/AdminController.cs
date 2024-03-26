@@ -13,7 +13,7 @@ namespace PsycoTest.Controllers
 {
     public class AdminController : Controller
     {
-        DBModel.DBPsycoTest dBPsyco = new DBModel.DBPsycoTest();
+        DBModel.ModelDBPsycoTest dBPsyco = new DBModel.ModelDBPsycoTest();
         [HttpGet]
         public ActionResult Users()
         {
@@ -21,6 +21,61 @@ namespace PsycoTest.Controllers
             dBModel = dBPsyco.User.ToList();
             return View(dBModel.ToList());
         }
+
+        public ActionResult WorkGroups()
+        {
+            List<DBModel.Group> groups = new List<DBModel.Group>();
+            groups = dBPsyco.Group.ToList();
+            return View(groups.ToList());
+        }
+
+
+        public ActionResult DeleteGroup(int id = 0)
+        {
+            DBModel.Group group = dBPsyco.Group.Find(id);
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            return View(group);
+        }
+
+        [HttpPost, ActionName("DeleteGroup")]
+        public ActionResult DeleteConfirmedGroup(int id)
+        {
+
+            DBModel.Group group = dBPsyco.Group.Find(id);
+            dBPsyco.Group.Remove(group);
+            dBPsyco.SaveChanges();
+
+            return RedirectToRoute(new { controller = "Admin", action = "WorkGroups" });
+
+        }
+
+        public ActionResult EditGroup(int id = 0)
+        {
+
+            DBModel.Group group = dBPsyco.Group.Find(id);
+            ViewBag.GroupId = dBPsyco.Group.ToList();
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            return View(group);
+        }
+
+        [HttpPost]
+        public ActionResult EditGroup(DBModel.Group group)
+        {
+            if (ModelState.IsValid)
+            {
+                dBPsyco.Entry(group).State = EntityState.Modified;
+                dBPsyco.SaveChanges();
+                return RedirectToAction("WorkGroups");
+            }
+            return View(group);
+        }
+
 
         public ActionResult Delete(int id = 0)
         {
@@ -31,6 +86,9 @@ namespace PsycoTest.Controllers
             }
             return View(user);
         }
+
+     
+
 
         public ActionResult Edit(int id = 0)
         {
@@ -89,6 +147,40 @@ namespace PsycoTest.Controllers
             dBPsyco.SaveChanges();
 
             return RedirectToRoute(new { controller = "Admin", action = "Users" });
+
+        }
+
+        [HttpGet]
+        public ActionResult CreateGroup()
+        {
+            Models.Group newGroup = new Models.Group();
+
+            return View(newGroup);
+
+        }
+
+        [HttpPost]
+        public ActionResult CreateGroup(Models.Group group)
+        {
+            if (ModelState.IsValid)
+            {
+                    if (!dBPsyco.Group.Any(m => m.GroupNumber == group.GroupNumber))
+                    {
+                            DBModel.Group newGroup = new DBModel.Group();
+                            newGroup.GroupNumber = group.GroupNumber; 
+                            dBPsyco.Group.Add(newGroup);
+                            dBPsyco.SaveChanges();
+                            return RedirectToRoute(new { controller = "Admin", action = "WorkGroups" });
+                        
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Ошибка", "Такая группа с номером " + group.GroupNumber + " уже существует");
+                        return View(group);
+                    }
+            }
+            return View(group);
+
 
         }
 

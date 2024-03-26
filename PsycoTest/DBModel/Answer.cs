@@ -17,24 +17,16 @@ namespace PsycoTest.DBModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Answer()
         {
-            this.Result = new HashSet<Result>();
+            this.TakeAnswer = new HashSet<TakeAnswer>();
         }
     
         public int AnswerId { get; set; }
         public int AnswerQuestionId { get; set; }
-        public string Answer1 { get; set; }
-        public string Answer2 { get; set; }
-        public string Answer3 { get; set; }
-        public string Answer4 { get; set; }
-        public string Answer5 { get; set; }
-        public string Answer6 { get; set; }
-        public string Answer7 { get; set; }
-        public string Answer8 { get; set; }
-        public string Answer9 { get; set; }
-        public string Answer10 { get; set; }
+        public string AnswerName { get; set; }
+        public int AnswerScore { get; set; }
     
         public virtual Question Question { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Result> Result { get; set; }
+        public virtual ICollection<TakeAnswer> TakeAnswer { get; set; }
     }
 }

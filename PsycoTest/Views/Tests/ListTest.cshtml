@@ -1,0 +1,23 @@
+﻿@model IEnumerable<PsycoTest.DBModel.Test>
+
+@{
+    ViewBag.Title = "Список тестов";
+}
+
+<fieldset style="font-family: 'Times New Roman';">
+    <legend style="font-size: 28pt;">
+        Список тестов
+    </legend>
+    <hr style="margin-bottom: 50px" />
+
+    <div style="margin-top: 25px">
+            @foreach (var t in Model)
+            {
+                <div style="margin-top: 10px; font-size: 20pt; display: block; justify-content: center; border: 1px blue solid;" >
+                    @Html.ActionLink(t.TestName, "Test", new { id = t.TestId }, new { @class = "nav-link", @style="text-align: center" })
+                </div>
+            }
+    </div>
+
+
+</fieldset>

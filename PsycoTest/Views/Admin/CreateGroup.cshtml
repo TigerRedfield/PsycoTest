@@ -1,0 +1,41 @@
+﻿@model PsycoTest.Models.Group
+
+@{
+    ViewBag.Title = "Добавление групп";
+}
+
+
+
+@Html.ActionLink("Назад к списку групп", "WorkGroups", null, new { @class = "nav-link", @style = "font-family: Times New Roman; font-size: 16pt; color: #42aaff" })
+<h3 style="margin-top: 10px">Добавление группы</h3>
+<hr style="margin-bottom: 50px" />
+
+
+@using (Html.BeginForm("CreateGroup", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <a>
+        @Html.ValidationMessage("Ошибка", null, new { @class = "text text-danger" })
+    </a>
+
+    <div class="divAccount" style="margin-bottom: 50px">
+        <div class="divtb">
+            @Html.Label("Группа")
+            <a>
+                @Html.TextBoxFor(m => m.GroupNumber)
+            </a>
+            <a>
+                @Html.ValidationMessageFor(m => m.GroupNumber, null, new { @class = "text text-danger" })
+            </a>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div style="display: flex; justify-content: center; margin-top: 16px">
+            <input type="submit" value="Добавить" style="font-size: 20pt; width: 200px" />
+        </div>
+    </div>
+
+}

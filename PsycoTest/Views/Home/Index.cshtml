@@ -1,3 +1,46 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Главная страница";
+}
+
+@if (Session["UserLogin"] == null)
+{
+    <div style="font-size: 20px; font-family: 'Times New Roman'; display: block; justify-content: center; text-align: center;">
+        <a>
+            Добро пожаловать на сайт!<br />
+            Это сайт, где Вы можете пройти психологические тесты.<br /> <br />
+            Пункт в навигации "Тесты" - переход к списку тестов. <br />
+            Перед началом прохождения теста Вы можете прочитать описание выбрав перед этим тест из списка.
+        </a>
+        <br /><br />
+        <a style="color: red">Внимание! <br/> Для того, чтобы проходить тесты Вы должны быть авторизованы.</a>
+    </div>
+}
+else
+{
+    if (Session["UserLogin"].ToString().Contains("Admin"))
+    {
+        <div style="font-size: 20px; font-family: 'Times New Roman'; display: block; justify-content: center; text-align: center;">
+            <a>
+                Добро пожаловать на сайт, @Session["UserLastName"] @Session["UserFirstName"] @Session["UserPatronymic"]!<br />
+                Вы являетесь администратором сайтом и Вам предоставлены права администратора.<br /> <br />
+                В будущем в пункте навигации "Тесты" будет возможность просматривать результаты тестов пользователей, а в пункте "Работа с тестами" - управление тестами. <br /><br />
+                В пункте "Пользователи" содержится список с информацией о данных пользователей и возможность управления этими данными<br />
+
+            </a>
+            <br /><br />
+        </div>
+    }
+    else
+    {
+        <div style="font-size: 20px; font-family: 'Times New Roman'; display: block; justify-content: center; text-align: center;">
+            <a>
+                Добро пожаловать на сайт, @Session["UserLastName"] @Session["UserFirstName"] @Session["UserPatronymic"]!<br />
+                Это сайт, где Вы можете пройти психологические тесты.<br /> <br />
+                Пункт в навигации "Тесты" - переход к списку тестов. <br />
+                Перед началом прохождения теста Вы можете прочитать описание выбрав перед этим тест из списка.<br /><br />
+                Также Вы можете изменить данные своего профиля кликнув по пункту навигации "Профиль"
+            </a>
+        </div>
+
+    }
 }

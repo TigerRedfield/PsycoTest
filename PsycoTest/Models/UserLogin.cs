@@ -8,12 +8,13 @@ namespace PsycoTest.Models
 {
     public class UserLogin
     {
+        public int UserId { get; set; } 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Пожалуйста, введите логин!")]
-        [Display(Name = "Введите логин: ")]
+        [Display(Name = "Введите логин")]
         public string Login { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Пожалуйста, введите пароль!")]
-        [Display(Name = "Введите пароль: ")]
+        [Display(Name = "Введите пароль")]
         public string Password { get; set; }
 
       

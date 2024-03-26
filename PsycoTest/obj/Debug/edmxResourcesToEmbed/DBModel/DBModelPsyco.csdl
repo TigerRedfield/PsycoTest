@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBPsycoTestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="AnswerId" />
+    </Key>
+    <Property Name="AnswerId" Type="Int32" Nullable="false" />
+    <Property Name="AnswerQuestionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AnswerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AnswerScore" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_Answer_Question" FromRole="Answer" ToRole="Question" />
+    <NavigationProperty Name="TakeAnswer" Relationship="Self.FK_TakeAnswer_Answer" FromRole="Answer" ToRole="TakeAnswer" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupNumber" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Group" FromRole="Group" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="QuestionId" />
+    </Key>
+    <Property Name="QuestionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuestionTestId" Type="Int32" Nullable="false" />
+    <Property Name="QuestionName" Type="String" MaxLength="180" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Answer" Relationship="Self.FK_Answer_Question" FromRole="Question" ToRole="Answer" />
+    <NavigationProperty Name="Test" Relationship="Self.FK_Question_Test" FromRole="Question" ToRole="Test" />
+  </EntityType>
+  <EntityType Name="Result">
+    <Key>
+      <PropertyRef Name="ResultId" />
+    </Key>
+    <Property Name="ResultId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResultTestId" Type="Int32" Nullable="false" />
+    <Property Name="ResultUserId" Type="Int32" Nullable="false" />
+    <Property Name="ResultDateStart" Type="DateTime" Precision="3" />
+    <Property Name="ResultDateEnd" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Test" Relationship="Self.FK_Result_Test" FromRole="Result" ToRole="Test" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Result_User" FromRole="Result" ToRole="User" />
+    <NavigationProperty Name="TakeAnswer" Relationship="Self.FK_TakeAnswer_Result" FromRole="Result" ToRole="TakeAnswer" />
+  </EntityType>
+  <EntityType Name="ResultScore">
+    <Key>
+      <PropertyRef Name="ResultScoreId" />
+    </Key>
+    <Property Name="ResultScoreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResultScoreTestId" Type="Int32" Nullable="false" />
+    <Property Name="ResultScoreName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ResultScoreValue" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Test" Relationship="Self.FK_ResultScore_Test" FromRole="ResultScore" ToRole="Test" />
+  </EntityType>
+  <EntityType Name="TakeAnswer">
+    <Key>
+      <PropertyRef Name="TakeResultId" />
+      <PropertyRef Name="TakeAnswerId" />
+    </Key>
+    <Property Name="TakeResultId" Type="Int32" Nullable="false" />
+    <Property Name="TakeAnswerId" Type="Int32" Nullable="false" />
+    <Property Name="TakeScore" Type="Int32" />
+    <NavigationProperty Name="Answer" Relationship="Self.FK_TakeAnswer_Answer" FromRole="TakeAnswer" ToRole="Answer" />
+    <NavigationProperty Name="Result" Relationship="Self.FK_TakeAnswer_Result" FromRole="TakeAnswer" ToRole="Result" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="TestId" />
+    </Key>
+    <Property Name="TestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TestName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TestDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Question" Relationship="Self.FK_Question_Test" FromRole="Test" ToRole="Question" />
+    <NavigationProperty Name="Result" Relationship="Self.FK_Result_Test" FromRole="Test" ToRole="Result" />
+    <NavigationProperty Name="ResultScore" Relationship="Self.FK_ResultScore_Test" FromRole="Test" ToRole="ResultScore" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserGroupId" Type="Int32" Nullable="false" />
+    <Property Name="UserLogin" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserFirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserLastName" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPatronymic" Type="String" MaxLength="90" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserDateBirth" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Group" Relationship="Self.FK_User_Group" FromRole="User" ToRole="Group" />
+    <NavigationProperty Name="Result" Relationship="Self.FK_Result_User" FromRole="User" ToRole="Result" />
+  </EntityType>
+  <Association Name="FK_Answer_Question">
+    <End Role="Question" Type="Self.Question" Multiplicity="1" />
+    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="QuestionId" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="AnswerQuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TakeAnswer_Answer">
+    <End Role="Answer" Type="Self.Answer" Multiplicity="1" />
+    <End Role="TakeAnswer" Type="Self.TakeAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Answer">
+        <PropertyRef Name="AnswerId" />
+      </Principal>
+      <Dependent Role="TakeAnswer">
+        <PropertyRef Name="TakeAnswerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="GroupId" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_Test">
+    <End Role="Test" Type="Self.Test" Multiplicity="1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="TestId" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="QuestionTestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Result_Test">
+    <End Role="Test" Type="Self.Test" Multiplicity="1" />
+    <End Role="Result" Type="Self.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="TestId" />
+      </Principal>
+      <Dependent Role="Result">
+        <PropertyRef Name="ResultTestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Result_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Result" Type="Self.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Result">
+        <PropertyRef Name="ResultUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TakeAnswer_Result">
+    <End Role="Result" Type="Self.Result" Multiplicity="1" />
+    <End Role="TakeAnswer" Type="Self.TakeAnswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Result">
+        <PropertyRef Name="ResultId" />
+      </Principal>
+      <Dependent Role="TakeAnswer">
+        <PropertyRef Name="TakeResultId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResultScore_Test">
+    <End Role="Test" Type="Self.Test" Multiplicity="1" />
+    <End Role="ResultScore" Type="Self.ResultScore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test">
+        <PropertyRef Name="TestId" />
+      </Principal>
+      <Dependent Role="ResultScore">
+        <PropertyRef Name="ResultScoreTestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelDBPsycoTest" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Answer" EntityType="Self.Answer" />
+    <EntitySet Name="Group" EntityType="Self.Group" />
+    <EntitySet Name="Question" EntityType="Self.Question" />
+    <EntitySet Name="Result" EntityType="Self.Result" />
+    <EntitySet Name="ResultScore" EntityType="Self.ResultScore" />
+    <EntitySet Name="TakeAnswer" EntityType="Self.TakeAnswer" />
+    <EntitySet Name="Test" EntityType="Self.Test" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_Answer_Question" Association="Self.FK_Answer_Question">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="Answer" EntitySet="Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TakeAnswer_Answer" Association="Self.FK_TakeAnswer_Answer">
+      <End Role="Answer" EntitySet="Answer" />
+      <End Role="TakeAnswer" EntitySet="TakeAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Group" Association="Self.FK_User_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_Test" Association="Self.FK_Question_Test">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Result_Test" Association="Self.FK_Result_Test">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="Result" EntitySet="Result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Result_User" Association="Self.FK_Result_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Result" EntitySet="Result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TakeAnswer_Result" Association="Self.FK_TakeAnswer_Result">
+      <End Role="Result" EntitySet="Result" />
+      <End Role="TakeAnswer" EntitySet="TakeAnswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResultScore_Test" Association="Self.FK_ResultScore_Test">
+      <End Role="Test" EntitySet="Test" />
+      <End Role="ResultScore" EntitySet="ResultScore" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
